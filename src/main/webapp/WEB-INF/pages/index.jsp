@@ -1,7 +1,8 @@
 <html>
+<head>
+<title>Spring MVC Demo</title>
+</head>
 <body>
-<h2>Hello World!</h2>
- 
-<h4>Message : ${message}</h1>	
+<h1>Hello Guest! This is the main page of our site!</h1>	
 </body>
 </html>
