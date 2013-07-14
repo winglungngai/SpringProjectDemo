@@ -1,0 +1,23 @@
+# original
+CREATE TABLE `CUSTOMER` (
+  `CUST_ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `NAME` VARCHAR(100) NOT NULL,
+  `AGE` INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`CUST_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+# own version
+CREATE TABLE `worklogs` (
+  `wid` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `author` VARCHAR(100) NOT NULL,
+  `content` VARCHAR(100) NOT NULL,
+  `date` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`wid`)
+);
+
+# insert
+INSERT INTO worklogs (wid, author, content, date) VALUES (1, "Wing", "Do something 1", "July 7");
+INSERT INTO worklogs (author, content, date) VALUES ("Wing", "Do something 1", "July 7")
+
+# delete all contents from table
+Truncate table CUSTOMER;
