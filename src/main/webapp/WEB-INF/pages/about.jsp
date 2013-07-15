@@ -10,9 +10,11 @@
 <h1>Hello Guest! This is Spring MVC Demo</h1>
 This site is built for the purpose of learning Spring MVC, which is extremely difficult to configure.
 Anyway, the developer intends to integrate the knowledge from semantic web, information retrieval, and web data management into this site.
-
+<br>
+<br>
 The current development can be found here below:
-
+<br>
+<br>
 <c:if test="${not empty worklogs}">
     <table>
         <c:forEach var="w" items="${worklogs}">
@@ -24,5 +26,15 @@ The current development can be found here below:
         </c:forEach>
     </table>
 </c:if>
+
+<br>
+<br>
+Add new work:
+
+<form action="about" method="post">
+  Work Description: <input type="text" name="content">
+  <input type="submit" value="Submit">
+</form>
+
 </body>
 </html>

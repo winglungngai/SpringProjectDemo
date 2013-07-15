@@ -4,9 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 import javax.sql.DataSource;
+
 import org.spring.demo.dao.WorkLogDAO;
 import org.spring.demo.model.WorkLog;
  
@@ -21,7 +25,7 @@ public class JDBCWorkLogDAO implements WorkLogDAO
 	public void insert(WorkLog worklog){
  
 		String sql = "INSERT INTO worklogs " +
-				"(author, content, date) VALUES (?, ?, ?)";
+				"(author, content, timestamp) VALUES (?, ?, ?)";
 		Connection conn = null;
  
 		try {
@@ -29,7 +33,7 @@ public class JDBCWorkLogDAO implements WorkLogDAO
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, worklog.getAuthor());
 			ps.setString(2, worklog.getContent());
-			ps.setString(3, worklog.getDate());
+			ps.setTimestamp(3, new Timestamp(worklog.getDate().getTime()));
 			ps.executeUpdate();
 			ps.close();
  
@@ -62,7 +66,7 @@ public class JDBCWorkLogDAO implements WorkLogDAO
 					rs.getInt("wid"),
 					rs.getString("author"), 
 					rs.getString("content"),
-					rs.getString("date")
+					(Date) rs.getTimestamp("timestamp")
 				);
 			}
 			rs.close();
@@ -95,7 +99,7 @@ public class JDBCWorkLogDAO implements WorkLogDAO
 					rs.getInt("wid"),
 					rs.getString("author"), 
 					rs.getString("content"),
-					rs.getString("date")
+					(Date) rs.getTimestamp("timestamp")
 				);
 				worklogs.add(worklog);
 			}
