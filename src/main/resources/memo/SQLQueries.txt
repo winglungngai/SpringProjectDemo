@@ -24,6 +24,30 @@ CREATE TABLE `worklogs` (
   PRIMARY KEY (`wid`)
 );
 
+# own version 3
+CREATE TABLE `users` (
+  `user_id` INT(10) UNSIGNED NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `enabled` TINYINT(1) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+CREATE TABLE `user_roles` (
+  `user_role_id` INT(10) UNSIGNED NOT NULL,
+  `user_id` INT(10) UNSIGNED NOT NULL,
+  `authority` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`user_role_id`),
+  KEY `fk_user_roles` (`user_id`),
+  CONSTRAINT `fk_user_roles` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+INSERT INTO springdemo_db.users (user_id, username,password, enabled)
+VALUES (200, 'wing', '`', TRUE);
+ 
+INSERT INTO springdemo_db.user_roles (user_role_id, user_id,authority)
+VALUES (2, 200, 'ROLE_USER');
+
 # insert
 INSERT INTO worklogs (wid, author, content, date) VALUES (1, "Wing", "Do something 1", "July 7");
 INSERT INTO worklogs (author, content, date) VALUES ("Wing", "Do something 1", "July 7");
